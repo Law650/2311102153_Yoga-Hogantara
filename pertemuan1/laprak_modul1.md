@@ -209,12 +209,95 @@ return 0;
 
 ```
 #### Output:
-![240302_00h00m06s_screenshot](https://github.com/suxeno/Struktur-Data-Assignment/assets/111122086/6d1727a8-fb77-4ecf-81ff-5de9386686b7)
+![pertemuan1/OUTPUT/unguided1.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan1/OUTPUT/unguided1.png)
 
-Kode di atas digunakan untuk mencetak teks "ini adalah file code guided praktikan" ke layar menggunakan function cout untuk mengeksekusi nya.
+Kode di atas menggunaka 3 function untuk menghitung penjumlahan, pengurangan, dan perkalian. Menggunakan switch case untuk memilih menu. Program diatas menggunakan 1 tipe data saja yaitu int.
+Kesimpulan Tipe data Primitif merupakan tipe data yang sudah ada atau disediakan oleh sistem.
+
+### 2. [Jelaskan fungsi dari class dan struct secara detail dan berikan contoh programnya ]
+```C++
+//program struct dan class
+#include  <iostream>
+
+using namespace std;
+
+class gitar{//class gitar 
+    public:
+    string merek;
+    string series;
+    float harga;
+};
+
+struct senar{//struct senar
+    string msenar;
+    int ukuran;
+};
+
+int main(){
+
+    cout<<"--CLASS--\n"; //deklarasi class yang menampilkan merek dan series dari gitar
+    gitar guitar;
+    guitar.merek ="Cort";
+    guitar.series ="ad810op";
+    cout<<"MEREK GITAR : "<<guitar.merek<<endl;
+    cout<<"SERIES GITAR: "<<guitar.series<<endl;
+
+    cout<<"++STRUCT++\n";//deklarasi struct yang menampilkan senar dan ukuran senar
+    senar steel{"Elixir",10};
+    cout<<"MEREK SENAR : "<<steel.msenar<<endl;
+    cout<<"UKURAN SENAR : "<<steel.ukuran<<endl;
+    return 0;
+}
+
+
+```
+#### Output:
+![pertemuan1/OUTPUT/unguided2.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan1/OUTPUT/unguided2.png)
+
+Kode di atas menggunakan class dan struct. program diatas menggunakan tipe data string, float, int. class gitar menggunakan tipe data string dan float, struct senar menggunakan string dan int. pada class guitar menyimpan 3 nilai berbentuk string merek, string series dan float harga. pada struct senar menyimpan 2 nilai string msenar dan int ukuran.
+
+1. Fungsi CLASS
+   Class pada program berfungsi untuk menampung atau mengelompokkan isi dari program yang akan dijalankan yang didalamnya     terdapat tipe data untuk menjalankan nya.
+2. Fungsi STRUCT
+   Struct pada program berfungsi untuk mengelompokan suatu data dengan memiliki tipe data yang berbeda
+
+### 3. [Buat dan jelaskan program menggunakan fungsi map dan jelaskan perbedaan dari array dengan map.]
+```C++
+#include <iostream>
+#include <map>//agar map dapat berjalan
+
+using namespace std;
+
+int main(){
+    //map. int untuk kunci dan string untuk merek gitar
+    map <int,string> gitar;
+    gitar[1]="Yamaha";
+    gitar[2]="Fender";
+    gitar[3]="Squire";
+    gitar[4]="Gibson";
+
+    //for untuk menampilkan nomor dan kunci dari map
+    for(int y = 1;y<=gitar.size();y++){
+        cout<<y<<"."<<gitar[y]<<endl;
+    }
+return 0;
+}
+```
+#### Output:
+![pertemuan1/OUTPUT/unguided3.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan1/OUTPUT/unguided3.png)
+
+Kode diatas menggunakan fungsi map yang dimana digunakan untuk menyimpan suatu data, dengan menggunakan library map agar program dapat berjalan.
+
+Perbedaan Map dengan array 
+1. Map
+   Map berfungsi untuk menyimpan suatu data namun dengaan kunci yang tidak diharuskan untuk selalu berurutan
+3. Array
+   Array berfungsi untuk menyimpan data namun harus berurutan dan harus memiliki tipe data yang sama.
 
 ## Kesimpulan
-Ringkasan dan interpretasi pandangan kalia dari hasil praktikum dan pembelajaran yang didapat[1].
+Tipe data pada C++ merupakan pengklasifikasian data berdasar jenis yang dibutuhkan agar compiler dapat berjalan dengan baik dan dapat dipahami. Sehingga sangat penting terdapat Tipe-tipe data pada program.
 
 ## Referensi
-[1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
+[1] Achmad Udin Zailani, Budi Apriyanto, dan Hadi Zakaria, STRUKTUR DATA. Banten: Unpam Press; 2020.
+
+[2] Subandijo, PARADIGMA BAHASA PEMROGRAMAN. Jakarta Barat: Binus University; 2011.
