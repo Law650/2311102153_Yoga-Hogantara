@@ -1,207 +1,140 @@
-# <h1 align="center">Laporan Praktikum Modul 1 - Tipe Data</h1>
+# <h1 align="center">Laporan Praktikum Modul 2 - ARRAY</h1>
 <p align="center">Yoga Hogantara - 2311102153</p>
 
 ## Dasar Teori
 
-Tipe Data merupakan pengklasifikasian berdasar jenis suatu data agar compiler dapat mengetahui sebuah data yang digunakan.
-1. Tipe data Primitif
-    Tipe data Primitif sendiri merupakan tipe data yang sudah di tentukan oleh sistem. Contoh dari tipe data primitif yaitu:
-   -int (menyimpan bilangan bulat)
-   -float (menyimpan bilangan desimal)
-   -char (menyimpan huruf)
-   -boolean (menyimpan nilai boolean yang memiliki dua nilai)
-2. Tipe data Abstrak
-   Tipe data Abstrak merupakan tipe data yang dientuk oleh programer sendiri. Tipe data abstrak dapat berisi banyak tipe       data, sehingga nilainya dapat lebih dari satu.
-3. Tipe data Koleksi
-   Tipe data Koleksi merupakan tipe data yang digunkan untuk menyimpan atau mengelompokkan beberapa nilai. Sehingga pada 
-   tipe data ini anda dapat menyimpan, mengelola, dan mengaksess sejumlah besar data.
+Array merupakan struktur data yang memiliki elemen dengan tipe data yang sama. Array biasa digunakan untuk menyimpan elemen dengan tipe data yang sama dan jumlah atau ukuran yang sudah diketahui.
+Array terdiri dari beberapa jenis
+1. Array satu Dimensi
+   Array satu dimensi merupakan suatu tipe variabel yang terdiri dari satu dimensi dengan tipe yang sama dan disusun dalam    satu baris.
+2. Array dua Dimensi
+   Array satu dimensi merupakan suatu tipe variabel yang terdiri dari dua dimensi dengan tipe yang sama dan disusun dalam     suatu baris dan kolom.
+3. Array Multidimensi
+   Array multidimensi merupakan suatu tipe variabel yang memiliki kapasitas memori yang lebih besar. Array multidimensi       memiliki kesamaan dengan array sebelumya namun dengan indeks yang lebih banyak.
 
 ## Guided 
 
-### 1. [Tipe Data Primitif]
+### 1. [Program Input Array Tiga Dimensi]
 
 ```C++
-#include <iostream>
-#include <iomanip>
-
-using namespace std;
-int main(){
-    char op;
-    float num1,num2;
-    // it allows user to enter operator i.e. +,-,*,/
-
-    cout<< "enter operation(+,-,*,/): ";
-    cin>>op;
-
-    //it allows user to enter the operand
-    cout<<"enter two operands: ";
-     cin >> num1 >> num2; 
+ #include <iostream>
  
-    // Switch statement begins 
-    switch (op) { 
-        // If user enters + 
-        case '+': 
-            cout << "Result: " << num1 + num2; 
-            break; 
-        // If user enters - 
-        case '-': 
-            cout << "Result: " << num1 - num2; 
-            break; 
-        // If user enters * 
-        case '*': 
-            cout << "Result: " << num1 * num2; 
-            break; 
-        // If user enters / 
-        case '/': 
-            if (num2 != 0) { 
-                cout << "Result: " << fixed << setprecision(2) << num1 / num2; 
-            } else { 
-                cout << "Error! Division by zero is not allowed."; 
-            } 
-            break; 
-        // If the operator is other than +, -, * or /, 
-        // error message will display 
-        default: 
-            cout << "Error! Operator is not correct"; 
-    } // switch statement ends 
+ using namespace std;
+ // PROGRAM INPUT ARRAY 3 DIMENSI
+ int main()
+ {
  
-    return 0; 
-} 
+ // Deklarasi array
+ int arr[2][3][3];
 
-
-```
-Kode di atas digunakan untuk memilih keempat operasi, program diatas menggunakan percabangan switch case sehingga user dapat menginputkan operasi yang dipilih, jika user menginputkan selain yang ada dimenu maka program akan menampilkan "Error! Operator is not correct" dan akan menghentikan program. Program diatas terdapat Tipe data Primitif yaitu char dan float.
-
-### 2. [Tipe Data Abstrak]
-
-```C++
-#include <stdio.h> 
-#include <string.h> 
- 
-//Struct 
-struct Mahasiswa 
-{ 
-    char name[50]; 
-    char address[100]; 
-    int age; 
-}; 
-int main() 
-{ 
-// menggunakan struct 
-    struct Mahasiswa mhs1, mhs2; 
-    // mengisi nilai ke struct 
-    strcpy(mhs1.name, "Dian"); 
-    strcpy(mhs1.address, "Mataram"); 
-    mhs1.age = 22; 
-    strcpy(mhs2.name, "Bambang"); 
-    strcpy(mhs2.address, "Surabaya"); 
-    mhs2.age = 23; 
-     
-    // mencetak isi struct 
-    printf("## Mahasiswa 1 ##\n"); 
-    printf("Nama: %s\n", mhs1.name); 
-    printf("Alamat: %s\n", mhs1.address); 
-    printf("Umur: %d\n", mhs1.age); 
-    printf ("\n"); 
-    printf("## Mahasiswa 2 ##\n"); 
-    printf("Nama: %s\n", mhs2.name); 
-    printf("Alamat: %s\n", mhs2.address); 
-    printf("Umur: %d\n", mhs2.age); 
-    return 0; 
+ // Input elemen
+    for (int x = 0; x < 2; x++){
+        for (int y = 0; y < 3; y++){
+            for (int z = 0; z < 3; z++){
+                cout << "Input Array[" << x << "][" << y << "][" << z << "] = ";
+                cin >> arr[x][y][z];
+            }
+        }
+        cout << endl;
+    }
+ // Output Array
+    for (int x = 0; x < 2; x++){
+        for (int y = 0; y < 3; y++){
+            for (int z = 0; z < 3; z++){
+                cout << "Data Array[" << x << "][" << y << "][" << z << "] = " << arr[x][y][z] << endl;
+            }
+        }
+    }
+    cout << endl;
+ // Tampilan array
+    for (int x = 0; x < 2; x++){
+        for (int y = 0; y < 3; y++){
+            for (int z = 0; z < 3; z++){
+                cout << arr[x][y][z] <<" "<< ends;
+            }
+            cout << endl;
+        }
+        cout << endl;
+    }
 }
 
-```
-Kode di atas menggunakan struct untuk mengelompokkan data, dengan menggunakan struct pada program dapat menyimpan 2 variabel dengan tipe data yang berbeda. Pada struct diatas menggunakan tipe data char dan int. Struct mahasiswa pada program diatas memiliki 3 nilai,char name[50], char address[50], int age, pada main struct mahasiswa di isi dengan nama.
 
-###3. Tipe Data Koleksi
+
+
+```
+Kode di atas menampilkan Array 3 dimensi dengan ukuran 2x3x3 yang nilai nilai nya di inputkan oleh user. program diatas menggunakan nested for yang asing masing memiliki fungsi yang berbeda. Pada nested for yang pertama berfungsi untuk menginputkan nilai kedalam array, nested for kedua berfungsi untuk menampilkan nilai yang sudah diinputkan, nested for ketiga berfungsi untuk menampilkan array dengan tata letak yang rapi
+
+### 2. [ Program Mencari Nilai Maksimal pada Array]
+
 ```C++
-#include <iostream> 
-#include <array> 
-using namespace std; 
+ #include <iostream>
+ using namespace std;
+ int main()
+ {
  
-int main() { 
-    // Deklarasi dan inisialisasi array 
-    int nilai[5]; 
-    nilai[0] = 23; 
-    nilai[1] = 50; 
-    nilai[2] = 34; 
-    nilai[3] = 78; 
-    nilai[4] = 90; 
- 
-    // Mencetak array dengan tab 
-    cout << "Isi array pertama  : " << nilai[0] << endl; 
-    cout << "Isi array kedua    : " << nilai[1] << endl; 
-    cout << "Isi array ketiga   : " << nilai[2] << endl; 
-    cout << "Isi array keempat  : " << nilai[3] << endl; 
-    cout << "Isi array kelima   : " << nilai[4] << endl; 
- 
-    return 0; 
-}
-```
-Kode diatas menggunakan array untuk menyimpan nilai-nilai yang diinputkan. Array pada program diatas menampung 5 nilai (23,50,34,78,90) dan dideklarasikan dibawah.
+    int maks, a, i = 1, lokasi;
+    //MENGINPUT PANJANG ARRAY
+    cout << "Masukkan panjang array: ";
+    cin >> a;
+    //MENGINPUTKAN ARRAY
+    int array[a];
+    cout << "Masukkan " << a << " angka\n";
+        for (i = 0; i < a; i++){
+            cout << "Array ke-" << (i) << ": ";
+            cin >> array[i];
+        }
+    maks = array[0]; //MENCARI NILAI MAX DAN LOKASI
+        for (i = 0; i < a; i++){
+            if (array[i] > maks){
+                 maks = array[i];
+                    lokasi = i;
+            }
+        }
+    cout << "Nilai maksimum adalah " << maks << " berada di Array ke " << lokasi << endl; //OUTPUT
+ }
 
+```
+Kode di atas berfungsi untuk mencari nilai maksimum dan lokasi dari nilai maksimum pada array. nilai dan panjang dari array diinputkan oleh user, dengan menggunakan perulangan for untuk menginputkan array dan mencari nilai maksimum pada array yang sudah diinputkan.
 
 ## Unguided 
 
-### 1. [Buatlah program menggunakan tipe data primitif minimal dua fungsi dan bebas. Menampilkan program, jelaskan program tersebut dan ambil kesimpulan dari materi tipe data primitif!]
+### 1. [ Buatlah program untuk menampilkan Output seperti berikut dengan data yang diinputkan oleh user!]
 
 ```C++
-//unguided1_ tipe data primitif min2 fungsi dan bebas
+//Yoga Hogantara 2311102153
 #include <iostream>
 
 using namespace std;
 
-int angka1,angka2;
-int pilih;
+int main()
+{
+    int bil_153[10];
+    
+    cout<<"INPUT DATA ARRAY \n";//MENGINPUT ARRAY
+    for(int y=1;y<=10;y++){
+        cout<<"DATA ARRAY  "<<y<<" : ";
+        cin>>bil_153[y];
+    }
+    cout<<endl;
 
-//fungsi untuk penjumlahan agar lebih mudah
-int jumlah(int y,int h){
-    return y + h;
-}
-//fungsi pengurangan, sama seperti diatas
-int kurang(int y,int h){
-    return y - h;
-}
-//fungsi perkalian,sama seperti diatas
-int kali(int y, int h){
-    return y*h;
-}
+    cout<<"DATA ARRAY : ";//MENAMPILKAN ARRAY
+    for(int y=1;y<=10;y++){
+        cout<<bil_153[y]<<" ";
+    }
+    cout<<endl;
+    cout<<"Bilangan Genap : ";//MENCARI BILANGAN GENAP
+    for(int y=1;y<=10;y++){
+        if(bil_153[y]%2==0){
+            cout<<bil_153[y]<<",";
+        }
+    }
+    cout<<endl;
 
-
-int main(){
-
-    cout<<"xxx+++---+++xxx\n";
-    cout<<"1.PENJUMLAHAN \n";
-    cout<<"2.PENGURANGAN \n";
-    cout<<"3.PERKALIAN \n";
-    cout<<"PILIH : ";
-    cin>>pilih;
-    cout<<"\n";
-
-    switch(pilih){//untuk memilih pilihan di atas ^
-        case 1://jika memilih 1 maka akan meng outpukan penjumlahan
-        cout<<"MASUKAN ANGKA 1 : ";
-        cin>>angka1;
-        cout<<"MASUKAN ANGKA 2 : ";
-        cin>>angka2;
-        cout<<"HASIL PENJUMLAHAN : "<<jumlah(angka1,angka2);
-        break;
-        case 2://jika memilih 2 maka akan meng outputkan pengurangan
-        cout<<"MASUKAN ANGKA 1 : ";
-        cin>>angka1;
-        cout<<"MASUKAN ANGKA 2 : ";
-        cin>>angka2;
-        cout<<"HASIL PENGURANGAN : "<<kurang(angka1,angka2);
-        break;
-        case 3://jika memilih 3 maka akan meng outputkan perkalian
-        cout<<"MASUKAN ANGKA 1 : ";
-        cin>>angka1;
-        cout<<"MASUKAN ANGKA 2 : ";
-        cin>>angka2;
-        cout<<"HASIL PERKALIAN : "<<kali(angka1,angka2);
-        break;
-        default://jika tidak memilih maka akan mengoutpukan "UNKNOWN"
-        cout<<"UNKNOWN";
+    cout<<"Bilangan Gajil : ";//MENCARI BILANGAN GANJIL
+    for(int y=1;y<=10;y++){
+        if(bil_153[y]%2!=0){
+            cout<<bil_153[y]<<",";
+        }
     }
 
 return 0;
@@ -209,95 +142,166 @@ return 0;
 
 ```
 #### Output:
-![pertemuan1/OUTPUT/unguided1.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan1/OUTPUT/unguided1.png)
+![pertemuan2/OUTPUT/unguided1.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan2/OUTPUT/unguided1.png)
 
-Kode di atas menggunaka 3 function untuk menghitung penjumlahan, pengurangan, dan perkalian. Menggunakan switch case untuk memilih menu. Program diatas menggunakan 1 tipe data saja yaitu int.
-Kesimpulan Tipe data Primitif merupakan tipe data yang sudah ada atau disediakan oleh sistem.
+Kode di atas berfungsi untuk mencari suatu bilangan ganjil dan genap dari nilai yang diinputkan oleh user dan disimpan didalam array. Dengan menggunakan perulangan for dan pengkondisian if untuk mencari suatu bilangan genap dan ganjil dalam suatu array.
 
-### 2. [Jelaskan fungsi dari class dan struct secara detail dan berikan contoh programnya ]
+### 2. [Buatlah program Input array tiga dimensi (seperti pada guided) tetapi jumlah atau ukuran elemennya diinputkan oleh user!]
 ```C++
-//program struct dan class
-#include  <iostream>
+//Yoga Hogantara 2311102153
+#include <iostream>
 
 using namespace std;
 
-class gitar{//class gitar 
-    public:
-    string merek;
-    string series;
-    float harga;
-};
+int main() {
+    //VARIABLE MENYINMPAN ARRAY 
+    int xu_153, yu_153, zu_153;
 
-struct senar{//struct senar
-    string msenar;
-    int ukuran;
-};
+    // MENGINPUTKAN ARRAY
+    cout << "INPUT UKURAN x : "; 
+    cin>>xu_153;
+    cout << "INPUT UKURAN y : "; 
+    cin>>yu_153;
+    cout << "INPUT UKURAN z : "; 
+    cin>>zu_153;
+   
+    //DEKLARASI ARRAY
+    int arr[xu_153][yu_153][zu_153];
 
-int main(){
+    // MENGISI DATA ARRAY OLEH USER
+    for (int x=0;x<xu_153;x++) {
+        for (int y=0;y<yu_153;y++) {
+            for (int z=0;z<zu_153;z++) {
+                cout << "Input Array["<<x<<"]["<<y<<"]["<<z<<"] = ";
+                cin >> arr[x][y][z];
+            }
+        }
+        cout << endl;
+    }
 
-    cout<<"--CLASS--\n"; //deklarasi class yang menampilkan merek dan series dari gitar
-    gitar guitar;
-    guitar.merek ="Cort";
-    guitar.series ="ad810op";
-    cout<<"MEREK GITAR : "<<guitar.merek<<endl;
-    cout<<"SERIES GITAR: "<<guitar.series<<endl;
+    //MENAMPILKAN ARRAY BESERTA INDEKS
+    for (int x=0;x<xu_153;x++) {
+        for (int y=0;y<yu_153;y++) {
+            for (int z=0;z<zu_153;z++) {
+                cout << "Data Array["<<x<<"]["<<y<<"]["<<z<<"] = "<< arr[x][y][z]<< endl;
+            }
+        }
+    }
+    cout << endl;
 
-    cout<<"++STRUCT++\n";//deklarasi struct yang menampilkan senar dan ukuran senar
-    senar steel{"Elixir",10};
-    cout<<"MEREK SENAR : "<<steel.msenar<<endl;
-    cout<<"UKURAN SENAR : "<<steel.ukuran<<endl;
+    //MENAMPILKAN ARRAY 3 D
+    for (int x=0;x<xu_153;x++) {
+        for (int y=0;y<yu_153;y++) {
+            for (int z=0;z<zu_153;z++) {
+                cout << arr[x][y][z] << " ";
+            }
+            cout << endl;
+        }
+        cout << endl;
+    }
+
     return 0;
 }
 
 
 ```
 #### Output:
-![pertemuan1/OUTPUT/unguided2.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan1/OUTPUT/unguided2.png)
+![pertemuan2/OUTPUT/unguided2.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan2/OUTPUT/unguided2.png)
+![pertemuan2/OUTPUT/unguided2,1.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan2/OUTPUT/unguided2,1.png)
 
-Kode di atas menggunakan class dan struct. program diatas menggunakan tipe data string, float, int. class gitar menggunakan tipe data string dan float, struct senar menggunakan string dan int. pada class guitar menyimpan 3 nilai berbentuk string merek, string series dan float harga. pada struct senar menyimpan 2 nilai string msenar dan int ukuran.
+Kode di atas menampilkan array 3 Dimensi yang diinputkan oleh user dan ditampilkan isi array dan indeksnya. Dengan menggunakan 3 nested loop yang masing masing memiliki fungsi yang berbeda. Nested loop pertama berfungsi untuk menginputkan array oleh user, nested loop kedua untuk menampilkan array beserta indeks, nested loop ketiga untuk menampilkan array.
 
-1. Fungsi CLASS
-   Class pada program berfungsi untuk menampung atau mengelompokkan isi dari program yang akan dijalankan yang didalamnya     terdapat tipe data untuk menjalankan nya.
-2. Fungsi STRUCT
-   Struct pada program berfungsi untuk mengelompokan suatu data dengan memiliki tipe data yang berbeda
-
-### 3. [Buat dan jelaskan program menggunakan fungsi map dan jelaskan perbedaan dari array dengan map.]
+### 3. [Buatlah program menu untuk mencari nilai Maksimum, Minimum dan Nilai rata– rata dari suatu array dengan input yang dimasukan oleh user!]
 ```C++
+//Yoga Hogantara 2311102153
 #include <iostream>
-#include <map>//agar map dapat berjalan
 
 using namespace std;
+ 
+int main() {
+    
+    int bil_153=10; 
+    int Menu_153[bil_153]={}; 
+    int pil_153; 
+    //PERULANGAN AGAR PROGRAM BERJALAN SETIDAKNYA 1 KALI
+    do{ 
+        cout << "-----Menu-----\n"; 
+        cout << "1. Input Array\n"; 
+        cout << "2. Cari Nilai Minimum\n"; 
+        cout << "3. Cari Nilai Maksimum\n"; 
+        cout << "4. Hitung Rata-Rata\n"; 
+        cout << "5. Exit\n"; 
+        cout << "Masukan Pilihan: "; 
+        cin>> pil_153; //INPUT MENU
 
-int main(){
-    //map. int untuk kunci dan string untuk merek gitar
-    map <int,string> gitar;
-    gitar[1]="Yamaha";
-    gitar[2]="Fender";
-    gitar[3]="Squire";
-    gitar[4]="Gibson";
+        switch(pil_153){ //MEMILIH MENU
+    case 1: 
+        cout<<"Input Array \n"; //MENGINPUT ARRAY
+        for(int y=0; y<bil_153; y++){ 
+            cout<<"Bil "<<y+1<<" : "; 
+            cin>>Menu_153[y]; 
+        } 
+        break; 
+    
+    case 2:{ 
+        int minimum_153=Menu_153[0]; //MENCARI NILAI MINIMUM
+        for(int y=1;y<bil_153;y++){ 
+            if(Menu_153[y]<minimum_153){ 
+                minimum_153=Menu_153[y]; 
+            } 
+        } 
+        cout<<"Nilai Minimum dari bil yang di input = "<<minimum_153<<endl; //OUTPUT MINIMUM
+        break; 
+    } 
+    case 3:{ 
+        int max_153=Menu_153[0]; //MENCARI NILAI MAKSIMUM
+        for(int y=0;y<bil_153;y++){ 
+            if(Menu_153[y]>max_153){ 
+                max_153=Menu_153[y]; 
+            } 
+        } 
+       cout<<"Nilai Maksimum dari bil yang di input ="<<max_153<<endl; //OUTPUT MAKSIMUM
+       break; 
+    } 
+    case 4:{ //MENCARI RATA-RATA
+        float rata2_153; 
+        float total_153=0; 
+        for(int y=0;y<bil_153;y++){ 
+            total_153=total_153+Menu_153[y]; 
+        } 
+        rata2_153=(total_153/bil_153); 
+        cout<<"rata rata : "<<rata2_153<<endl; //OUTPUT
+        break; 
+    } 
+    case 5:{ 
+            cout<<"==============================\n"; 
+            cout<<"TY cuy\n"; 
+            return 0; 
+            break; 
+    } 
+    default: 
+        cout<<"Pilih lagi cuyy\n"; 
+        break; 
+        } 
+    } 
+    while(pil_153 !=0);
+ 
+return 0; 
+} 
 
-    //for untuk menampilkan nomor dan kunci dari map
-    for(int y = 1;y<=gitar.size();y++){
-        cout<<y<<"."<<gitar[y]<<endl;
-    }
-return 0;
-}
+
 ```
 #### Output:
-![pertemuan1/OUTPUT/unguided3.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan1/OUTPUT/unguided3.png)
+![pertemuan2/OUTPUT/unguided3.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan2/OUTPUT/unguided3.png)
 
-Kode diatas menggunakan fungsi map yang dimana digunakan untuk menyimpan suatu data, dengan menggunakan library map agar program dapat berjalan.
+Kode diatas akan menampilkan menu yang dapat dipilih oleh user, setiap menu memiliki kegunaan yang berbeda. Dengan menggunakan loop do-while yang memungkinkan program berjalan sesuai yang diinginkan, dan menggunakan percabangan switch agar user dapat memilih menu. Pada switch case 1 untuk menginputkan array oleh user, case 2 untuk mencari nilai minimum yang diinputkan pada array, case 3 untuk mencari nilai maksimum pada array yang diinputkan, case 4 untuk mencari nilai rata-rata, setiap case menggunakan perulangan for.
 
-Perbedaan Map dengan array 
-1. Map
-   Map berfungsi untuk menyimpan suatu data namun dengaan kunci yang tidak diharuskan untuk selalu berurutan
-3. Array
-   Array berfungsi untuk menyimpan data namun harus berurutan dan harus memiliki tipe data yang sama.
+
 
 ## Kesimpulan
-Tipe data pada C++ merupakan pengklasifikasian data berdasar jenis yang dibutuhkan agar compiler dapat berjalan dengan baik dan dapat dipahami. Sehingga sangat penting terdapat Tipe-tipe data pada program.
+Array merupakan suatu struktur data yang memungkinkan untuk menyimpan elemen dengan tipe data yang sama dengan jumlah atau ukuran yang telah diketahui. Array berguna dalam membuat matrix.
 
 ## Referensi
-[1] Achmad Udin Zailani, Budi Apriyanto, dan Hadi Zakaria, STRUKTUR DATA. Banten: Unpam Press; 2020.
+[1] Pratama, Muhammad A. “STRUKTUR DATA ARRAY DUA DIMENSI PADA PEMROGRAMAN C++.” OSF Preprints, 29 Mar. 2020. Web.
 
-[2] Subandijo, PARADIGMA BAHASA PEMROGRAMAN. Jakarta Barat: Binus University; 2011.
+
