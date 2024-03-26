@@ -154,7 +154,7 @@ int main() {
         int umurMahasiswa;
 
         cout << "Masukkan nama mahasiswa ke-" << i+1 << ": ";
-        getline(cin, namaMahasiswa);
+        cin>>namaMahasiswa;
         cout << "Masukkan usia mahasiswa ke-" << i+1 << ": ";
         cin >> umurMahasiswa;
         cin.ignore(); // Membersihkan newline dari buffer stdin
