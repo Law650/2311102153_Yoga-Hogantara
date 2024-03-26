@@ -134,9 +134,9 @@ int main() {
     int umurgw;
 
     // Input data pengguna sendiri
-    cout << "Masukkan nama Anda: ";
+    cout << "INPUT NAMA LOE: ";
     cin >> namagw;
-    cout << "Masukkan usia Anda: ";
+    cout << "INPUT USIA LOE: ";
     cin >> umurgw;
     cin.ignore(); // Membersihkan newline dari buffer stdin
 
@@ -145,7 +145,7 @@ int main() {
 
     // Input data nama dan usia mahasiswa lain dari pengguna
     int jumlahMahasiswa;
-    cout << "Masukkan jumlah mahasiswa lain: ";
+    cout << "INPUT JUMLAH MAHASISWA YANG MAU DITAMBAH: ";
     cin >> jumlahMahasiswa;
     cin.ignore(); // Membersihkan newline dari buffer stdin
 
@@ -153,9 +153,9 @@ int main() {
         string namaMahasiswa;
         int umurMahasiswa;
 
-        cout << "Masukkan nama mahasiswa ke-" << i+1 << ": ";
+        cout << "INPUT NAMA MAHASISWA KE-" << i+1 << ": ";
         cin>>namaMahasiswa;
-        cout << "Masukkan usia mahasiswa ke-" << i+1 << ": ";
+        cout << "INPUT USIA MAHASISWA KE-" << i+1 << ": ";
         cin >> umurMahasiswa;
         cin.ignore(); // Membersihkan newline dari buffer stdin
 
@@ -170,13 +170,13 @@ int main() {
     // Menu operasi
     while(true){
     int menu;
-    cout << "Menu Operasi:\n";
-    cout << "1. Hapus data mahasiswa\n";
-    cout << "2. Tambahkan data mahasiswa di depan\n";
-    cout << "3. Tambahkan data mahasiswa di tengah\n";
-    cout << "4. Tambahkan data mahasiswa di belakang\n";
-    cout << "5. Tampilkan data\n";
-    cout << "6. Keluar\n";
+    cout << "Menu\n";
+    cout << "1. DELETE DATA MAHASISWA\n";
+    cout << "2. NAMBAH DATA MAHASISWA DI DEPAN\n";
+    cout << "3. NAMBAH DATA MAHASISWA DI TENGAH\n";
+    cout << "4. NAMBAH DATA MAHASISWA DI BELAKANG\n";
+    cout << "5. TAMPIL DATA\n";
+    cout << "6. OUT\n";
     cout << "Pilih : ";
     cin >> menu;
     cin.ignore(); // Membersihkan newline dari buffer stdin
@@ -185,7 +185,7 @@ int main() {
     switch (menu) {
         case 1: {
             string hapusnama;
-            cout << "Masukkan nama mahasiswa yang ingin dihapus: ";
+            cout << "INPUT NAMA MAHASISWA YANG INGIN DI HAPUS: ";
             cin>>hapusnama;
             list.remove(hapusnama);
             break;
@@ -193,9 +193,9 @@ int main() {
         case 2: {
             string namatambahdepan;
             int usiatambahdepan;
-            cout << "Masukkan nama mahasiswa yang ingin ditambahkan di depan: ";
+            cout << "INPUT NAMA MAHASISWA YANG INGIN DITAMBAH DI DEPAN: ";
             cin>>namatambahdepan;
-            cout << "Masukkan usia mahasiswa yang ingin ditambahkan di depan: ";
+            cout << "INPUT USIA MAHASISWA YANG INGIN DITAMBAH DI DEPAN: ";
             cin>> usiatambahdepan;
             cin.ignore(); // Membersihkan newline dari buffer stdin
             list.tambahdepan(namatambahdepan, usiatambahdepan);
@@ -205,11 +205,11 @@ int main() {
             string namaTambahTengah;
             int usiaTambahTengah;
             int posisiTambahTengah;
-            cout << "Masukkan nama mahasiswa yang ingin ditambahkan di tengah: ";
+            cout << "INPUT NAMA MAHASISWA YANG INGIN DITAMBAH DI TENGAH: ";
             cin>>namaTambahTengah;
-            cout << "Masukkan usia mahasiswa yang ingin ditambahkan di tengah: ";
+            cout << "INPUT USIA MAHASISWA YANG INGIN DITAMBAH DI TENGAH: ";
             cin >> usiaTambahTengah;
-            cout << "Masukkan posisi untuk menambahkan mahasiswa di tengah: ";
+            cout << "INPUT POSISI MAHASISWA YANG INGIN DITAMBAH: ";
             cin >> posisiTambahTengah;
             cin.ignore(); // Membersihkan newline dari buffer stdin
             list.tambahtengah(namaTambahTengah, usiaTambahTengah, posisiTambahTengah);
@@ -218,25 +218,25 @@ int main() {
         case 4: {
             string namaTambahBelakang;
             int usiaTambahBelakang;
-            cout << "Masukkan nama mahasiswa yang ingin ditambahkan di belakang: ";
+            cout << "INPUT NAMA MAHASISWA YANG INGIN DITAMBAH DIBELAKANG: ";
             cin>>namaTambahBelakang;
-            cout << "Masukkan usia mahasiswa yang ingin ditambahkan di belakang: ";
+            cout << "INPUT USIA MAHASISWA YANG INGIN DITAMBAH DIBELAKANG: ";
             cin >> usiaTambahBelakang;
             cin.ignore(); // Membersihkan newline dari buffer stdin
             list.tambahbelakang(namaTambahBelakang, usiaTambahBelakang);
             break;
         }
         case 5: {
-            cout << "Data mahasiswa setelah operasi:" << endl;
+            cout << "DATA MAHASISWA:" << endl;
             list.display();
             break;
         }
         case 6 : {
-            cout<<"Anda telah keluar dari menu!"<<endl;
+            cout<<"ANDA TELAH KELUAR "<<endl;
             exit(0);
         }
         default:
-            cout << "Opsi tidak valid" << endl;
+            cout << "DILUAR NALAR" << endl;
     
     }
     }
