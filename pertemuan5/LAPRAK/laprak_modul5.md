@@ -536,5 +536,6 @@ Untuk menangani collision terdapat 2 teknk utama:
       
 ## Referensi
 [1] Ruli Manurung, Ade Azurat, IKI 20100: Struktur Data & Algoritma Hash Table.Fasilkom UI; 2010
+
 [2] Mailund, T. (2019). The joys of hashing: hash table programming with C. Apress.
 
