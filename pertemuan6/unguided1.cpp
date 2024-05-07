@@ -1,47 +1,60 @@
 #include <iostream>
-#include <stack>
 #include <string>
+#include <stack>
 
 using namespace std;
 
-//  menentukan kalimat polindrom
-bool polindrom(string kalimat_153) {
-    stack<char> stackchar;
+string ubahhuruf(string str) {
+    string cleanStr;
+    for (char &c : str) {
+        if (isalpha(c)) {
+            cleanStr += tolower(c);
+        }
+    }
+    return cleanStr;
+}
+// MENENTUKAN PALINDROM
+bool palindrom(string str) {
+    stack<char> charStack;
+    int length = str.length();
 
-    // INPUT KE STACK
-    for (char &c : kalimat_153) {
-        stackchar.push(c);
+    for (int i = 0; i < length / 2; i++) {
+        charStack.push(str[i]);
     }
 
-    // BANDINGKAN KARAKTER
-    while (!stackchar.empty()) {
-        char topChar = stackchar.top();
-        stackchar.pop();
-        if (topChar != kalimat.front()) {
-            return false; // JIKA BEDA BUKAN POLINDROM
+    int start = length / 2;
+    if (length % 2 != 0) {
+        start++;
+    }
+    for (int i = start; i < length; i++) {
+        if (charStack.empty() || str[i] != charStack.top()) {
+            return false;
         }
-        kalimat_153.erase(0, 1); // HAPUS KARAKTER PERTAMA
+        charStack.pop();
     }
 
     return true;
 }
 
 int main() {
-    string kalimat_153;
+    char ulang;
+    do {
+        string kalimat;
+        cout << "INPUT KATA ATAU KALIMAT : ";
+        getline(cin, kalimat);
 
-    while (true) {
-        cout << "INPUT KALIMAT: ";
-        getline(cin, kalimat_153);
+        string clearinput = ubahhuruf(kalimat);
 
-        if (kalimat_153 == "0") {
-            break;
-        }
-        if (polindrom(kalimat_153)) {
-            cout << "KALIMAT TERSEBUT POLINDROM\n" ;
+        if (palindrom(clearinput)) {
+            cout << "INPUTAN TERMASUK PALINDROM \n" ;
         } else {
-            cout << "KALIMAT  TERSEBUT BUKAN PLINDROM\n" ;
+            cout << "INPUTAN TERMASUK BUKAN PALINDROM \n" ;
         }
-    }
+
+        cout << "ULANG ?? y/n";
+        cin >> ulang;
+        cin.ignore();
+    } while (ulang == 'y' || ulang == 'Y');
 
     return 0;
 }
