@@ -3,19 +3,19 @@
 
 using namespace std;
 
-// Struktur Mahasiswa untuk merepresentasikan data mahasiswa
+// MEMPRESENTASIKAN DATA MAHASISWA
 struct Mahasiswa {
     string nama; 
     long long nim; 
 };
 
-// Struktur Node untuk merepresentasikan elemen dalam antrian
+// STRUKTUR UNTUK ELEMENT QUEUE
 struct Node {
     Mahasiswa data; 
     Node* next; 
 };
 
-// Kelas Queue untuk merepresentasikan sebuah antrian
+// CLASS UNTUK MEMPRESENTASIKAN QUEUE
 class Queue {
 private:
     Node* front; 
@@ -23,21 +23,18 @@ private:
     int size; 
 
 public:
-    // Konstruktor untuk inisialisasi antrian kosong
     Queue() {
         front = nullptr; 
         back = nullptr; 
         size = 0; 
     }
-
-    // Metode untuk menambahkan data mahasiswa ke dalam antrian
+    //NAMBAH DATA
     void tambah(string nama, long long nim) {
         Node* newNode = new Node; 
         newNode->data.nama = nama; 
         newNode->data.nim = nim; 
         newNode->next = nullptr; 
         
-        // Jika antrian kosong, maka node baru menjadi elemen pertama dan terakhir
         if (isEmpty()) {
             front = newNode;
             back = newNode;
@@ -48,11 +45,11 @@ public:
         size++;
     }
 
-    // Metode untuk mengurangi elemen pertama dari antrian
+    // MENGURANGI DATA
     void kurang() {
         
         if (isEmpty()) {
-            cout << "Antrian kosong" << endl;
+            cout << "KOSONG\n";
         } else { 
             Node* temp = front; 
             front = front->next; 
@@ -61,19 +58,19 @@ public:
         }
     }
 
-    // Metode untuk menghitung jumlah elemen dalam antrian
+    // MENGHITUNG QUEUE
     int count() {
-        return size; // Mengembalikan ukuran antrian
+        return size; 
     }
 
-    // Metode untuk menghapus seluruh elemen dari antrian
+    //MENGHAPUS SEMUA DATA
     void clearQueue() {
-        while (!isEmpty()) { // Selama antrian tidak kosong, hapus elemen pertama
+        while (!isEmpty()) {
             kurang();
         }
     }
 
-    // Metode untuk menampilkan seluruh elemen dalam antrian beserta data mahasiswa
+    // MENAMPILKAN DATA
     void viewQueue() {
         cout << "QUEUE: \n"; 
         Node* current = front; 
@@ -87,7 +84,7 @@ public:
         }
     }
 
-    // Metode untuk memeriksa apakah antrian kosong
+    // MEMERIKSA ANTRIAN
     bool isEmpty() {
         return size == 0; 
     }

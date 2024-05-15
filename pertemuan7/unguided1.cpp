@@ -3,13 +3,13 @@
 
 using namespace std;
 
-// Struktur untuk merepresentasikan elemen dalam antrian
+// STRUKTUR UNTUK ELEMENT QUEUE
 struct Node {
     string data; 
     Node* next; 
 };
 
-// Kelas untuk merepresentasikan sebuah antrian
+// CLASS UNTUK MEMPRESENTASIKAN QUEUE
 class Queue {
 private:
     Node* front; 
@@ -17,20 +17,20 @@ private:
     int size; 
 
 public:
-    // Konstruktor untuk inisialisasi antrian kosong
+    // INISIALISASI QUEUE KOSONG
     Queue() {
         front = nullptr; 
         back = nullptr; 
         size = 0; 
     }
 
-    // Metode untuk menambahkan data ke dalam antrian
+    // MENAMBAH DATA
     void tambah(string nama) {
         Node* newNode = new Node; 
         newNode->data = nama; 
         newNode->next = nullptr; 
         
-        // Jika antrian kosong, maka node baru menjadi elemen pertama dan terakhir
+        
         if (isEmpty()) {
             front = newNode;
             back = newNode;
@@ -41,7 +41,7 @@ public:
         size++; 
     }
 
-    // Metode untuk mengurangi elemen dari antrian
+    // MENGURANG DATA
     void kurang() {
        
         if (isEmpty()) {
@@ -54,19 +54,19 @@ public:
         }
     }
 
-    // Metode untuk menghitung jumlah elemen dalam antrian
+    // MENGHINTUNG JUMLAH QUEUE
     int count() {
         return size; 
     }
 
-    // Metode untuk menghapus seluruh elemen dalam antrian
+    // MENGHAPUS SELURUH DATA
     void clearQueue() {
         while (!isEmpty()) { 
             kurang();
         }
     }
 
-    // Metode untuk menampilkan seluruh elemen dalam antrian
+    // MENAMPILKAN DATA
     void viewQueue() {
         cout << "ANTRIAN: \n";
         Node* current = front; 
@@ -80,27 +80,27 @@ public:
         }
     }
 
-    // Metode untuk memeriksa apakah antrian kosong
+    // MEMERIKSA QUEUE KOSONG
     bool isEmpty() {
         return size == 0; 
     }
 };
 
-// Fungsi utama program
+
 int main() {
     Queue queue_153; 
 
-    // Menambahkan beberapa data ke dalam antrian
+    // MENAMBAH DATA
     queue_153.tambah("Andi");
     queue_153.tambah("Maya");
-    // Menampilkan antrian
+    // MENAMPILKAN DATA
     queue_153.viewQueue();
     cout << "JUMLAH = "<<queue_153.count()<<endl;
-    // Mengurangi satu elemen dari antrian dan menampilkan hasilnya
+    // MENGURANGI 1 DATA PADA QUEUE
     queue_153.kurang();
     queue_153.viewQueue();
     cout << "JUMLAH = "<<queue_153.count()<<endl;
-    // Menghapus seluruh elemen dari antrian dan menampilkan hasilnya
+    // MENGHAPUS SEMUA DAN MENAMPILKAN DATA
     queue_153.clearQueue();
     queue_153.viewQueue();
     cout << "JUMLAH = "<<queue_153.count()<<endl;
