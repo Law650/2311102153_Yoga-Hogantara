@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int maksimalAntrian_146 = 5;
+const int maksimalAntrian = 5;
 int front = 0;
 int back = 0;
 string queueTeller[5];
@@ -90,7 +90,7 @@ void clearQueue()
 void viewQueue()
 {
     cout << "Data antrian: " << endl;
-    for (int i = 0; i < maksimalAntrian_146; i++)
+    for (int i = 0; i < maksimalAntrian; i++)
     {
         if (queueTeller[i] != "")
         {
