@@ -82,8 +82,7 @@ int main() {
         // LAGI ATAU ENGGA
         cout << "LAGI ? (y/n): ";
         cin >> pilih;
-        cin.ignore(); // Membersihkan buffer setelah input karakter
-
+        cin.ignore(); // MEMBERSIHKAN BUFFER
     } while (pilih == 'y' || pilih == 'Y');
 
     return 0;
