@@ -3,579 +3,143 @@
 
 ## Dasar Teori
 
-Linked list merupakan Struktur data yang dikenal sebagai daftar terkait adalah kumpulan elemen data di mana tiap elemen (node) saling berhubungan atau dihubungkan dengan elemen lain melalui pointer. Alamat elemen data yang tersimpan di mermori dikenal sebagai pointer.
-Semua pointer terdiri dari head dan tail. Pointer head berfungsi sebagai awal akses ke seluruh data dalam daftar terhubung, dan pointer tail berfungsi sebagai penanda akhir urutan pointer. Jika daftar terhubung memiliki elemen kosong, pointer head akan menunjuk ke NULL, dan begitu juga pointer berikutnya dari tail.
+SEARCHING
+Searching merupakan suatu proses mengumpulkan informasi dari Kumpulan data yang telah disimpan dengan menggunakan kunci tertentu. 
 
-Linked list tidak perlu menyimpan memori secara berurutan atau berdekatan. Mereka juga memiliki ukuran elemen yang dapat berubah secara dinamis dan mudah untuk menyisipkan dan menghapus elemen.
+Terdapat beberapa jenis Searching diantaranya yaitu:
 
-1. Linked List Non-Circular
-   Linked list non-circular adalah struktur data dinamis di mana setiap elemen atau node terhubung ke node berikutnya     dalam satu arah. Perbedaan utama dari linked list circular adalah bahwa node terakhir (tail) tidak terhubung kembali ke    head. Dengan demikian, linked list non-circular memungkinkan penambahan dan penghapusan elemen secara dinamis tanpa perlu menghubungkan kembali tail ke head. Penanda NULL pada ujung menunjukan bahwa elemen tidak dapat ditambahkan atau dihapus.
-   
-2. Linked List Circular
-   Linked list circular membutuhkan dummy node atau node tambahan untuk digunakan. Linked list circular tidak memiliki akhir karena node terakhir (tail) terhubung dengan node pertama (head) dan tidak bernilai "NULL". pengecoh, yang biasanya disebut sebagai node saat ini, supaya program dapat berhenti menghitung data ketika node saat ini mencapai node pertama (kepala). Daftar lingkaran terkait dapat digunakan untuk menyimpan informasi yang perlu diakses secara berulang, seperti daftar pesan dalam antrian, daftar putar lagu, atau penggunaan memori berulang dalam aplikasi.
+1. Sequential Search
+   Metode ini mencari data dengan membandingkan setiap komponen struktur data dengan nilai yang dicari, dimulai dari awal hingga akhir. Jika tidak ada data yang ditemukan, proses pencarian berakhir.
+Konsep dasar:
+   1. Terdapat sebuah larik yang berisi n buah data ( L[0], L[1], … , L[n-1])
+   2. i adalah bilangan indeks terkecil , yang memenuhi kondisi 0 ≤ k ≤ n-1
+   3. k adalah data yang dicari L[i]=k
+  
+2. Binary Search
+   Metode ini mengumpulkan data dengan membagi struktur data menjadi dua bagian dan membandingkan nilai yang dicari dengan nilai tengah. Jika nilai yang dicari lebih kecil dari nilai tengah, proses pencarian dilakukan di bagian kiri, dan jika nilainya lebih besar, maka proses pencarian dilakukan di bagian kanan. Sampai data ditemukan atau tidak ditemukan, proses ini berulang.
+
+Kelebihan dan Kekurangan dari Searching
+
+Kelebihan:
+   1. meningkatkan efisiensi pencarian data tertentu
+   2. memungkinkan penggunaan struktur data yang lebih kompleks dan efisien
+   3. dapat digunakan dalam berbagai aplikasi pemrograman.
+Kekurangan:
+   1. proses pencarian dapat memakan waktu yang lebih lama
+   2. dapat menjadi lebih kompleks jika digunakan dalam struktur data yang besar dan kompleks.
 
 ## Guided 
 
-### 1. [Linked List Non Circular]
+### 1. [Buatlah sebuah project dengan menggunakan sequential search sederhana untuk melakukan pencarian data.]
 
 ```C++
 #include <iostream>
 
 using namespace std;
 
-// PROGRAM SINGLE LINKED LIST NON-CIRCULAR
+int main(){
+    int n = 10;
+    int data[n] = {9,4,1,7,5,12,4,13,4,10};
+    int cari = 10;
+    bool ketemu = false;
+    int i;
 
-// Deklarasi struct node
-struct Node
-{
-    int data;
-    Node *next;
-};
+    for (i = 0; i < n; i++){
+        if(data[i] == cari){
+            ketemu = true;
+            break;
+        }
+    }
 
-Node *head; // Deklarasi head
-Node *tail; // Deklarasi tail
+    cout << "Program Sequential Search" << endl;
+    cout << "data : {9,4,1,7,5,12,4,13,4,10}" << endl;
 
-// Inisialisasi Node
-void init()
-{
-    head = NULL;
-    tail = NULL;
+    if (ketemu){
+        cout << "\nAngka " << cari << " ditemukan pada indeks ke-" << i << endl;
+    }else{
+        cout << "data tidak ditemukan" << endl;
+    }
+
+return 0;
 }
-
-// Pengecekkan apakah linked list kosong
-bool isEmpty()
-{
-    if (head == NULL)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-    // Tambah depan
-    void insertDepan(int nilai)
-    {
-
-        // buat node baru
-        Node *baru = new Node();
-        baru->data = nilai;
-        baru->next = NULL;
-        if (isEmpty() == true)
-        {
-            head = tail = baru;
-            head->next = NULL;
-        }
-        else
-        {
-            baru->next = head;
-            head = baru;
-        }
-    }
-
-    // Tambah belakang
-    void insertBelakang(int nilai)
-    {
-        // buat node baru
-        Node *baru = new Node();
-        baru->data = nilai;
-        baru->next = NULL;
-        if (isEmpty() == true)
-        {
-            head = tail = baru;
-            head->next = NULL;
-        }
-        else
-        {
-            tail->next = baru;
-            tail = baru;
-        }
-    }
-
-    // Hitung jumlah list
-    int hitungList()
-    {
-        Node *hitung;
-        hitung = head;
-        int jumlah = 0;
-        while (hitung != NULL)
-        {
-            jumlah++;
-            hitung = hitung->next;
-        }
-        return jumlah;
-    }
-
-    // Tambah tengah
-    void insertTengah(int data, int posisi)
-    {
-        if (posisi < 1 || posisi > hitungList())
-        {
-            cout << "Posisi di luar jangkauan" << endl;
-        }
-        else if (posisi == 1)
-        {
-            cout << "Posisi bukan posisi tengah" << endl;
-        }
-        else
-        {
-            Node *baru, *bantu;
-            baru = new Node();
-            baru->data = data;
-
-            // tranversing
-            bantu = head;
-            int nomor = 1;
-            while (nomor < posisi - 1)
-            {
-                bantu = bantu->next;
-                nomor++;
-            }
-
-            baru->next = bantu->next;
-            bantu->next = baru;
-        }
-    }
-
-    // Hapus depan
-    void hapusDepan()
-    {
-        Node *hapus;
-        if (isEmpty() == false)
-        {
-            if (head->next != NULL)
-            {
-                hapus = head;
-                head = head->next;
-                delete hapus;
-            }
-            else
-            {
-                head = tail = NULL;
-            }
-        }
-        else
-        {
-            cout << "Linked list masih kosong" << endl;
-        }
-    }
-
-    // Hapus belakang
-    void hapusBelakang()
-    {
-        Node *hapus;
-        Node *bantu;
-        if (isEmpty() == false)
-        {
-            if (head != tail)
-            {
-                hapus = tail;
-                bantu = head;
-                while (bantu->next != tail)
-                {
-                    bantu = bantu->next;
-                }
-                tail = bantu;
-                tail->next = NULL;
-                delete hapus;
-            }
-            else
-            {
-                head = tail = NULL;
-            }
-        }
-        else
-        {
-            cout << "Linked list masih kosong" << endl;
-        }
-    }
-    // Hapus tengah
-    void hapusTengah(int posisi)
-    {
-        Node *hapus, *bantu, *sebelum;
-        if (posisi < 1 || posisi > hitungList())
-        {
-            cout << "Posisi di luar jangkauan" << endl;
-        }
-        else if (posisi == 1)
-        {
-            cout << "Posisi bukan posisi tengah" << endl;
-        }
-        else
-        {
-            int nomor = 1;
-            bantu = head;
-            while (nomor <= posisi)
-            {
-                if (nomor == posisi - 1)
-                {
-                    sebelum = bantu;
-                }
-                if (nomor == posisi)
-                {
-                    hapus = bantu;
-                }
-                bantu = bantu->next;
-                nomor++;
-            }
-            sebelum->next = bantu;
-            delete hapus;
-        }
-    }
-
-    // ubah depan
-    void ubahDepan(int data)
-    {
-        if (isEmpty() == 0)
-        {
-            head->data = data;
-        }
-        else
-        {
-            cout << "Linked list masih kosong" << endl;
-        }
-    }
-
-    // ubah tengah
-    void ubahTengah(int data, int posisi)
-    {
-        Node *bantu;
-        if (isEmpty() == 0)
-        {
-            if (posisi < 1 || posisi > hitungList())
-            {
-                cout << "Posisi di luar jangkauan" << endl;
-            }
-            else if (posisi == 1)
-            {
-                cout << "Posisi bukan posisi tengah" << endl;
-            }
-            else
-            {
-                int nomor = 1;
-                bantu = head;
-                while (nomor < posisi)
-                {
-                    bantu = bantu->next;
-                    nomor++;
-                }
-                bantu->data = data;
-            }
-        }
-        else
-        {
-            cout << "Linked list masih kosong" << endl;
-        }
-    }
-
-    // ubah belakang
-    void ubahBelakang(int data)
-    {
-        if (isEmpty() == 0)
-        {
-            tail->data = data;
-        }
-        else
-        {
-            cout << "Linked list masih kosong" << endl;
-        }
-    }
-
-    // Hapus list
-    void clearList()
-    {
-        Node *bantu, *hapus;
-        bantu = head;
-        while (bantu != NULL)
-        {
-            hapus = bantu;
-            bantu = bantu->next;
-            delete hapus;
-        }
-        head = tail = NULL;
-        cout << "List berhasil terhapus!" << endl;
-    }
-
-    // Tampilkan list
-    void tampilList()
-    {
-        Node *bantu;
-        bantu = head;
-        if (isEmpty() == false)
-        {
-            while (bantu != NULL)
-            {
-                cout << bantu->data << " ";
-                bantu = bantu->next;
-            }
-            cout << endl;
-        }
-        else
-        {
-            cout << "Linked list masih kosong" << endl;
-        }
-    }
-
-    int main()
-    {
-        init();
-        insertDepan(3);
-        tampilList();
-        insertBelakang(5);
-        tampilList();
-        insertDepan(2);
-        tampilList();
-        insertDepan(1);
-        tampilList();
-        hapusDepan();
-        tampilList();
-        hapusBelakang();
-        tampilList();
-        insertTengah(7, 2);
-        tampilList();
-        hapusTengah(2);
-        tampilList();
-        ubahDepan(1);
-        tampilList();
-        ubahBelakang(8);
-        tampilList();
-        ubahTengah(11, 2);
-        tampilList();
-
-        return 0;
-    }
 
 ```
-Kode di atas digunakan untuk mengelola daftar data . Program ini memungkinkan Anda melakukan hal-hal seperti menambahkan node di depan, di belakang, dan di tengah, menghapus node di depan, di belakang, dan di tengah, dan mengubah nilai data pada node di depan, di belakang, dan di tengah. struktur node dibuat, yang akan menyimpan pointer dan data ke node berikutnya. Para variabel head dan tail diinisialisasi dengan nilai NULL untuk menunjukkan bahwa list tersebut kosong. Selain itu, ada fungsi-fungsi yang dapat digunakan untuk menambahkan data ke depan, belakang, dan tengah, menghitung jumlah elemen, menghapus elemen di tempat yang berbeda, mengubah data, menghapus semua elemen, dan menampilkan isi list.
+Kode di atas digunakan untuk mencari keberadaan angka pada data yang sudah ada. Dengan menggunakan metode sequential search yang memungkinkan mencari data dari data array yang sudah ada, angka yang dicari pada program diatas adalah angka 10, sequential search mencari angka 10 dengan menggunakan perulangan for. 
 
-### 2. [Linked List Circular]
+### 2. [Buatlah sebuah project untuk melakukan pencarian data dengan menggunakan Binary Search.]
 
 ```C++
-#include <iostream>
+#include<iostream>
+#include<conio.h>
+#include<iomanip>
 
 using namespace std;
 
-// Deklarasi Struct Node
+int dataArray[7] = {1, 8, 2, 5, 4, 9, 7};
+int cari;
 
-
-struct Node
-{
-    string data;
-    Node* next;
-};
-
-Node* head, * tail, * baru, * bantu, * hapus;
-
-//Inisialisasi node head & tail
-void init(){
-    head = NULL;
-    tail = head;
-}
-
-//Pengecekan isi list
-int isEmpty(){
-    if (head == NULL){
-        return 1; // true
-    } else {
-        return 0; // false
-    }
-}
-
-//Buat Node Baru
-void buatNode(string data){
-    baru = new Node;
-    baru->data = data;
-    baru->next = NULL;
-}
-
-//Hitung List
-int hitungList(){
-    bantu = head;
-    int jumlah = 0;
-    while (bantu != NULL) {
-        jumlah++;
-        bantu = bantu->next;
-    }
-    return jumlah;
-}
-
-//Tambah Depan
-void insertDepan(string data){
-    // Buat Node baru
-    buatNode(data);
-
-    if (isEmpty() == 1){
-        head = baru;
-        tail = head;
-        baru->next = head;
-    } else {
-        while (tail->next != head){
-            tail = tail->next;
+void Selection_Sort(){
+    int temp, min, i, j;
+    for(i = 0; i < 7; i++){
+        min = i;
+        for(j = i + 1; j < 7; j++){
+            if(dataArray[j] < dataArray[min]){
+                min = j;
+            }
         }
-        baru->next = head;
-        head = baru;
-        tail->next = head;
+        temp = dataArray[i];
+        dataArray[i] = dataArray[min];
+        dataArray[min] = temp;
     }
 }
 
-//Tambah Belakang
-void insertBelakang(string data){
-    // Buat Node baru
-    buatNode(data);
-
-    if (isEmpty() == 1){
-        head = baru;
-        tail = head;
-        baru->next = head;
-    } else {
-        while (tail->next != head){
-            tail = tail->next;
-        }
-        tail->next = baru;
-        baru->next = head;
-    }
-}
-
-//Tambah Tengah
-void insertTengah(string data, int posisi){
-    if (isEmpty() == 1){
-        head = baru;
-        tail = head;
-        baru->next = head;
-    } else {
-        baru->data = data;
-        // transversing
-        int nomor = 1;
-        bantu = head;
-        while (nomor < posisi - 1){
-            bantu = bantu->next;
-            nomor++;
-        }
-        baru->next = bantu->next;
-        bantu->next = baru;
-    }
-}
-
-//Hapus Depan
-void hapusDepan(){
-    if (isEmpty() == 0){
-        hapus = head;
-        tail = head;
-        if (hapus->next == head){
-            head = NULL;
-            tail = NULL;
-            delete hapus;
+void BinarySearch(){
+    int awal, akhir, tengah;
+    bool b_flag = false;
+    awal = 0;
+    akhir = 6;
+    while(!b_flag && awal <= akhir){
+        tengah = (awal + akhir)/2;
+        if(dataArray[tengah] == cari){
+            b_flag = true;
+        } else if(dataArray[tengah] < cari){
+            awal = tengah + 1;
         } else {
-            while (tail->next != hapus){
-                tail = tail->next;
-            }
-            head = head->next;
-            tail->next = head;
-            hapus->next = NULL;
-            delete hapus;
+            akhir = tengah - 1;
         }
-    } else {
-        cout << "List masih kosong!" << endl;
     }
-}
-
-//Hapus Belakang
-void hapusBelakang(){
-    if (isEmpty() == 0){
-        hapus = head;
-        tail = head;
-        if (hapus->next == head){
-            head = NULL;
-            tail = NULL;
-            delete hapus;
-        } else {
-            while (hapus->next != head){
-                hapus = hapus->next;
-            }
-            while (tail->next != hapus){
-                tail = tail->next;
-            }
-            tail->next = head;
-            hapus->next = NULL;
-            delete hapus;
-        }
+    if(b_flag){
+        cout << "\nData ditemukan pada index ke-" << tengah << endl;
     } else {
-        cout << "List masih kosong!" << endl;
-    }
-}
-
-// Hapus Tengah
-void hapusTengah(int posisi){
-    if (isEmpty() == 0){
-        // transversing
-        int nomor = 1;
-        bantu = head;
-        while (nomor < posisi - 1){
-            bantu = bantu->next;
-            nomor++;
-        }
-        hapus = bantu->next;
-        bantu->next = hapus->next;
-        delete hapus;
-    } else {
-        cout << "List masih kosong!" << endl;
-    }
-}
-
-//Hapus List
-void clearList(){
-    if (head != NULL){
-        hapus = head->next;
-        while (hapus != head){
-            bantu = hapus->next;
-            delete hapus;
-            hapus = bantu;
-        }
-        delete head;
-        head = NULL;
-    }
-    cout << "List berhasil terhapus!" << endl;
-}
-
-//Tampilkan List
-void tampil(){
-    if (isEmpty() == 0){
-        tail = head;
-        do {
-            cout << tail->data << ends;
-            tail = tail->next;
-        } while (tail != head);
-        cout << endl;
-    } else {
-        cout << "List masih kosong!" << endl;
+        cout << "\nData tidak ditemukan" << endl;
     }
 }
 
 int main(){
-    init();
-    insertDepan("Ayam");
-    tampil();
-    insertDepan("Bebek");
-    tampil();
-    insertBelakang("Cicak");
-    tampil();
-    insertBelakang("Domba");
-    tampil();
-    hapusBelakang();
-    tampil();
-    hapusDepan();
-    tampil();
-    insertTengah("Sapi", 2);
-    tampil();
-    hapusTengah(2);
-    tampil();
+    cout << "BINARY SEARCH" << endl;
+    cout << "\nData : ";
+    for(int x = 0; x < 7; x++){
+        cout << setw(3) << dataArray[x];
+    }
+    cout << endl;
+
+    cout << "Masukkan data yang ingin dicari : ";
+    cin >> cari;
     
-    return 0;
+    cout << "\nData diurutkan : ";
+    Selection_Sort();
+
+    for(int x = 0; x < 7; x++){
+        cout << setw(3) << dataArray[x];
+    }
+    cout << endl;
+    BinarySearch();
+    _getche();
+return 0;
 }
 
 ```
-Kode di atas merupakan implementasi dari list linked single circular dalam bahasa C++. List linked ini menggunakan struktur data Node, yang memiliki dua atribut: pointer next yang menunjuk ke Node berikutnya dan data bertipe string. Disebutkan sebagai pointer, variabel head, tail, new, help, dan delete digunakan untuk mengakses dan mengelola daftar yang terhubung.
+Kode di atas merupakan implementasi dari Selection sort dan binary search yang memungkinkan user dapat mencari data yang ingin dicari, dengan menggunakan array untuk menyimpan data, menggunakan fungsi Selection_Sort untuk mengurutkan dataArray, dan menggunakan fungsi BinarySearch() untuk mencari nilai dari dataArray yang sudah diurutkan menggunakan algoritma binary search.
 
 
 ## Unguided 
@@ -584,455 +148,190 @@ Kode di atas merupakan implementasi dari list linked single circular dalam bahas
 
 ```C++
 #include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
-struct Node
-{
-    string nama;
-    long long int NIM;
-    Node *next;
-};
+// BINARYSEARCH PADA STRING YANG DIURUTKAN
+bool binarySearch_153(const string &sortedstr, char target) {
+    int kiri = 0;
+    int kanan = sortedstr.length() - 1;
 
-class LinkedList
-{
-private:
-    Node *head;
+    while (kiri <= kanan) {
+        int center = kiri + (kanan - kiri) / 2;
 
-public:
-    LinkedList()
-    {
-        head = nullptr;
-    }
-
-    ~LinkedList()
-    {
-        Node *current = head;
-        while (current != nullptr)
-        {
-            Node *next = current->next;
-            delete current;
-            current = next;
+        if (sortedstr[center] == target) {
+            return true;  
         }
-        head = nullptr;
-    }
-
-    void tambahdepan(string nama, long long int NIM)//tambah depan
-    {
-        Node *newNode = new Node;
-        newNode->nama = nama;
-        newNode->NIM = NIM;
-        newNode->next = head;
-        head = newNode;
-    }
-
-    void tamnbahbelakang(string nama, long long int NIM)//tambah belakang
-    {
-        Node *newNode = new Node;
-        newNode->nama = nama;
-        newNode->NIM = NIM;
-        newNode->next = nullptr;
-        if (head == nullptr)
-        {
-            head = newNode;
-            return;
-        }
-        Node *current = head;
-        while (current->next != nullptr)
-        {
-            current = current->next;
-        }
-        current->next = newNode;
-    }
-
-    void tambahtengah(string nama,long long int NIM, int posisi)//mennambah di tegah
-    {
-        if (posisi <= 0)
-        {
-            cout << "POSISI HARUS LEBIH DARI 0\n";
-            return;
-        }
-        if (posisi == 1)
-        {
-            tambahdepan(nama, NIM);
-            return;
-        }
-        Node *newNode = new Node;
-        newNode->nama = nama;
-        newNode->NIM = NIM;
-        Node *current = head;
-        for (int i = 1; i < posisi - 1 && current != nullptr; ++i)
-        {
-            current = current->next;
-        }
-        if (current == nullptr)
-        {
-            cout << "POSISI KEGEDEAN\n";
-            return;
-        }
-        newNode->next = current->next;
-        current->next = newNode;
-    }
-
-    Node *search(string nama)
-    {
-        Node *current = head;
-        while (current != nullptr)
-        {
-            if (current->nama == nama)
-            {
-                return current;
-            }
-            current = current->next;
-        }
-        return nullptr;
-    }
-
-    void remove(string nama)// menghapus nama
-    {
-        if (head == nullptr)
-        {
-            return;
-        }
-        if (head->nama == nama)
-        {
-            Node *temp = head;
-            head = head->next;
-            delete temp;
-            return;
-        }
-        Node *current = head;
-        while (current->next != nullptr)
-        {
-            if (current->next->nama == nama)
-            {
-                Node *temp = current->next;
-                current->next = current->next->next;
-                delete temp;
-                return;
-            }
-            current = current->next;
+        if (sortedstr[center] < target) {
+            kiri = center + 1;
+        } else {
+            kanan = center - 1;
         }
     }
 
-    void tampil()//menampilkan data
-    {
-        Node *current = head;
-        cout << "DATA\n";
-        cout << "NAMA\tNIM" << endl;
-        while (current != nullptr)
-        {
-            cout << current->nama << "\t" << current->NIM << endl;
-            current = current->next;
+    return false;
+}
+
+// MENCARI SEMUA HURUF PADA INDEKS KALIMAT ASLI
+vector<int> findIndices_153(const string &originalstr, char target) {
+    vector<int> indices;
+    for (size_t i = 0; i < originalstr.length(); ++i) {
+        if (originalstr[i] == target) {
+            indices.push_back(i);
         }
     }
+    return indices;
+}
 
-    bool isEmpty()
-    {
-        return head == nullptr;
-    }
+int main() {
+    string input;
+    char target;
+    char pilih;
 
-    Node *getFrontNode()
-    {
-        return head;
-    }
-};
-
-int main()
-{
-    LinkedList list;
-
-    while (true)
-    {
-        int opsi;
-        cout << "PROGRAM SINGLE LINKED LIST NON-CIRCULAR\n";
-        cout << "1. TAMBAH DEPAN\n";
-        cout << "2. TAMBAH BELAKANG\n";
-        cout << "3. TAMBAH TENGAH\n";
-        cout << "4. UBAH DEPAN\n";
-        cout << "5. UBAH BELAKANG\n";
-        cout << "6. UBAH TENGAH\n";
-        cout << "7. DELETE DEPAN\n";
-        cout << "8. DELETE BELAKANG\n";
-        cout << "9. DELETE TENGAH\n";
-        cout << "10. DELETE \n";
-        cout << "11. TAMPILKAN\n";
-        cout << "0. KELUAR\n";
-        cout << "Pilih (1-11): ";
-        cin >> opsi;
-        cin.ignore();
-
-        switch (opsi){
+    do {
         
-        case 1:
-        {
-            string nama;//tambah depan
-            long long int NIM;
-            cout << "-=-TAMBAH DEPAN-=-\n";
-            cout << "INPUT NAMA: ";
-            cin >> nama;
-            cout << "INPUT NIM: ";
-            cin >> NIM;
-            list.tambahdepan(nama, NIM);
-            cout << "BERHASIL TER INPUT!\n";
-            break;
+        cout << "INPUT KALIMAT: ";
+        getline(cin, input);
+
+       
+        cout << "INPUT HURUF YANG DICARI: ";
+        cin >> target;
+        cin.ignore(); 
+
+        // MEMBUAT SALINAN PADA INPUTAN
+        string originalinput = input;
+
+        // MENGURUTKAN STRING
+        sort(input.begin(), input.end());
+
+        // BINARYSEARCH
+        bool ketemu = binarySearch_153(input, target);
+
+        // HASIL PENCARIAN
+        if (ketemu) {
+            cout << "HURUF '" << target << "' KETEMU DI KALIMAT.\n";
+
+            // MENCARI DAN MEAMPILKAN HURUF
+            vector<int> indices = findIndices_153(originalinput, target);
+            cout << "HURUF '" << target << "' ADA DI INDEKS : ";
+            for (size_t i = 0; i < indices.size(); ++i) {
+                cout << indices[i];
+                if (i < indices.size() - 1) {
+                    cout << ", ";  // JIKA BUKAN INDEKS TERAKHIR MENAMBAHKAN KOMA
+                }
+            }
+            cout << endl;
+        } else {
+            cout << "HURUF '" << target<< "' GA KETEMU DI KALIMAT.\n";
         }
-        case 2:
-        {
-            string nama;//tambah belakang
-            long long int NIM;
-            cout << "-=-TAMBAH BELAKANG-=-\n";
-            cout << "INPUT NAMA: ";
-            getline(cin, nama);
-            cout << "INPUT NIM: ";
-            cin >> NIM;
-            cin.ignore();
-            list.tamnbahbelakang(nama, NIM);
-            cout << "BERHASIL TER INPUT\n";
-            break;
-        }
-        case 3:
-        {
-            string nama;//tambah tangah
-            long long int NIM;
-            int posisi;
-            cout << "-=-TAMBAH TENGAH-=-\n";
-            cout << "IPUT NAMA: ";
-            getline(cin, nama);
-            cout << "INPUT NIM: ";
-            cin >> NIM;
-            cout << "INPUT POSISI: ";
-            cin >> posisi;
-            cin.ignore();
-            list.tambahtengah(nama, NIM, posisi);
-            cout << "BERHASIL DITAMBAH\n";
-            break;
-        }
-        case 4:
-        {//ubah depan
-            if (list.isEmpty())
-            {
-                cout << "LIST KOSONG, GABISA DIUBAH.\n";
-                break;
-            }
-            string namaBaru;
-            long long int NIMBaru;
-            cout << "-=-UBAH DEPAN-=-\n";
-            cout << "INPUT NAMA BARU : ";
-            getline(cin, namaBaru);
-            cout << "INPUT NIM BARU: ";
-            cin >> NIMBaru;
-            cin.ignore();
-            Node *frontNode = list.getFrontNode();
-            frontNode->nama = namaBaru;
-            frontNode->NIM = NIMBaru;
-            cout << "DATA BERHASIL TERUBAH\n";
-            break;
-        }
-        case 5:
-        {//ubah belakang
-            if (list.isEmpty())
-            {
-                cout << "LIST KOSONG, GABISA DIUBAH.\n";
-                break;
-            }
-            string namaBaru;
-            long long int NIMBaru;
-            cout << "-=-UBAH BELAKANG-=-\n";
-            cout << "INPUT NAMA BARU: ";
-            getline(cin, namaBaru);
-            cout << "INPUT NIM BARU: ";
-            cin >> NIMBaru;
-            cin.ignore();
-            Node *current = list.getFrontNode();
-            while (current->next != nullptr)
-            {
-                current = current->next;
-            }
-            current->nama = namaBaru;
-            current->NIM = NIMBaru;
-            cout << "DATA BERHASIL TERUBAH\n";
-            break;
-        }
-        case 6:
-        {//ubah tengah
-            if (list.isEmpty())
-            {
-                cout << "LIST KOSONG, GABISA DIUBAH.\n";
-                break;
-            }
-            int posisi;
-            cout << "-=-UBAH TANGAH-=-\n";
-            cout << "INPUT POSISI NODE YANG DIUBAH";
-            cin >> posisi;
-            cin.ignore();
-            if (posisi <= 0)
-            {
-                cout << "POSISI HARUS LEBIH DARI 0\n";
-                break;
-            }
-            Node *current = list.getFrontNode();
-            for (int i = 1; i < posisi && current != nullptr; ++i)
-            {
-                current = current->next;
-            }
-            if (current == nullptr)
-            {
-                cout << "POSISI KEGEDEAN\n";
-                break;
-            }
-            string namaBaru;
-            long long int NIMBaru;
-            cout << "INPUT NAMA BARU: ";
-            getline(cin, namaBaru);
-            cout << "INPUT NIM BARU: ";
-            cin >> NIMBaru;
-            cin.ignore();
-            current->nama = namaBaru;
-            current->NIM = NIMBaru;
-            cout << "DATA POSISI " << posisi << " TERUBAH.\n";
-            break;
-        }
-        case 7:
-        {//menghapus list depan
-            if (list.isEmpty())
-            {
-                cout << "LIST KOSONG GABISA DIHAPUS\n";
-                break;
-            }
-            string nama = list.getFrontNode()->nama;
-            list.remove(nama);
-            cout << "DATA DEPAN "<< nama<< " TERHAPUS.\n";
-            break;
-        }
-        case 8:
-        {
-            string nama;
-            if (list.isEmpty())
-            {//menghapus list belakang
-                cout << "LIST KOSONG GABISA DIHAPUS\n";
-                break;
-            }
-            Node *prev = nullptr;
-            Node *current = list.getFrontNode();
-            while (current->next != nullptr)
-            {
-                prev = current;
-                current = current->next;
-            }
-            if (prev == nullptr)
-            {
-                // If there's only one node in the list
-                list.remove(current->nama);
-            }
-            else
-            {
-                // If there are multiple nodes in the list
-                prev->next = nullptr;
-                delete current;
-            }
-            cout << "DATA BELAKANG "<< current->nama <<"TERHAPUS.\n";
-            break;
-        }
-        case 9:
-        {
-            if (list.isEmpty())
-            {
-                cout << "LIST KOSONG GABISA DIHAPUS\n";
-                break;
-            }
-            int posisi;
-            cout << "INPUT POSISI NODE YANG DIHAPUS: ";
-            cin >> posisi;
-            cin.ignore();
-            if (posisi <= 0)
-            {
-                cout << "POSISI HARUS LEBIH DARI 0\n";
-                break;
-            }
-            Node *prev = nullptr;
-            Node *current = list.getFrontNode();
-            for (int i = 1; i < posisi && current != nullptr; ++i)
-            {
-                prev = current;
-                current = current->next;
-            }
-            if (current == nullptr)
-            {
-                cout << "POSISI KEGEDAN\n";
-                break;
-            }
-            if (prev == nullptr)
-            {
-                // If removing the first node
-                list.remove(current->nama);
-            }
-            else
-            {
-                // If removing a node in the middle
-                prev->next = current->next;
-                delete current;
-            }
-            cout << "DATA BERHASIL TERHAPUS PADA POSISI " << posisi << "\n";
-            break;
-        }
-        case 10:
-        {
-            if (list.isEmpty())
-            {
-                cout << "LIST SUDAH KOSONG\n";
-                break;
-            }
-            while (!list.isEmpty())
-            {
-                Node *temp = list.getFrontNode();
-                list.remove(temp->nama);
-            }
-            cout << "SELURUH DATA TERHAPUS.\n";
-            break;
-        }
-        case 11:
-        {
-            list.tampil();
-            break;
-        }
-        case 0:
-        {
-            cout << "TY CUYY\n";
-            exit(0);
-        }
-        default:
-        {
-            cout << "KAGA NGOTAK\n";
-            break;
-        }
-        }
-    }
+
+        // LAGI ATAU ENGGA
+        cout << "LAGI ? (y/n): ";
+        cin >> pilih;
+        cin.ignore(); // MEMBERSIHKAN BUFFER
+    } while (pilih == 'y' || pilih == 'Y');
 
     return 0;
 }
 ```
 #### Output:
-![pertemuan4/OUTPUT/1.1.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan4/OUTPUT/1.1.png)
-![pertemuan4/OUTPUT/1.2.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan4/OUTPUT/1.2.png)
-![pertemuan4/OUTPUT/1.3.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan4/OUTPUT/1.3.png)
-![pertemuan4/OUTPUT/1.4.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan4/OUTPUT/1.4.png)
-![pertemuan4/OUTPUT/1.5.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan4/OUTPUT/1.5.png)
-![pertemuan4/OUTPUT/1.6.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan4/OUTPUT/1.6.png)
-![pertemuan4/OUTPUT/1.7.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan4/OUTPUT/1.7.png)
-![pertemuan4/OUTPUT/1.8.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan4/OUTPUT/1.8.png)
-![pertemuan4/OUTPUT/1.9.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan4/OUTPUT/1.9.png)
-![pertemuan4/OUTPUT/1.10.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan4/OUTPUT/1.10.png)
-![pertemuan4/OUTPUT/1.11.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan4/OUTPUT/1.11.png)
+![pertemuan8/OUTPUT/1.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan8/OUTPUT/1.png)
 
-Kode di atas menggunakan linked list non circular. yang dapat menambah, menghapus, mengubah suatu data yang berada didepan, belakang, dan tengah yang diinputkan oleh user. Terdapat beberapa fungsi pada program diatas yang berfungsi untuk mengedit data yang diinputkan oleh user dengan menggunakan fungsi tambahdepan ( untuk menambahkan data pada awal ), tambahbelakang ( untuk menambahkan data pada akhir ), tambahtengah ( untuk menambahkan data diantara data yang sudah ada ), remove( untuk menghapus data ), tampil( untuk menampilkan data yang sudah diinputkan ). Fungsi tersebut di implementasikan dalam metode kelas linked list dan terdapat perulangan agar program berjalan dengan sesuai
+Kode di atas menggunakan binary search untuk emncari huruf dari suatu kalimat yang di inputkan. Dengan menggunakan binarySearch_153 untuk mencari karakter yang dicari, fungsi findIndices_153 untuk mengembalikan vektor yang berisi semua dimana target ditemukan. Program ini berguna untuk mencari keberadaan dan posisi suatu karakter dalam sebuah string dengan menggunakan binary search.
+
+### 2. [Buatlah sebuah program yang dapat menghitung banyaknya huruf vocal dalam sebuah kalimat!]
+
+```C++
+#include <iostream>
+#include <string>
+using namespace std;
+
+// MERIKSA HURUF VOKAL ATAU BUKAN
+bool vokal(char huruf) {
+    // MENGKONVERSI KE HURUF KECIL
+    huruf = tolower(huruf);
+    // MERIKSA HURUF TERMASUK HURUF VOKAL
+    return (huruf == 'a' || huruf == 'e' || huruf == 'i' || huruf == 'o' || huruf == 'u');
+}
+
+// MENGHITUNG BANYAKNYA HURUF VOKAL
+int itungvokal(const string &kalimat) {
+    int count = 0;
+    for (char huruf : kalimat) {
+        if (vokal(huruf)) {
+            count++;
+        }
+    }
+    return count;
+}
+int main() {
+    string sentence;
+    cout << "INPUT KALIMAT: ";
+    getline(cin, sentence); // Membaca input kalimat dari pengguna
+
+    int vokal2 = itungvokal(sentence);
+    cout << "HURUF VOKAL YANG ADA PADA KALIMAT " << sentence <<" : "<< vokal2 << endl;
+
+    return 0;
+}
+```
+#### Output:
+![pertemuan8/OUTPUT/2.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan8/OUTPUT/2.png)
+
+Kode di atas digunakan untuk mencari huruf vokal dan jumlah huruf vokal yang di inputkan oleh user. Dengan menggunakan fungsi vokal untuk mengkonversikan ke huruf kecil dan memeriksa apakah karakter termasuk kedalam huruf vokal atau tidak, dan fungsi itungvokal untuk menghitung berapa huruf vokal pada karakter
+
+### 3. [ Diketahui data = 9, 4, 1, 4, 7, 10, 5, 4, 12, 4. Hitunglah berapa banyak angka 4 dengan menggunakan algoritma Sequential Search! ]
+
+```C++
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int n = 10;//MAKS JUMLAH DATA
+    int data[n] = {9, 4, 1, 4, 7, 10, 5, 4, 12, 4};//DATA
+    int cari = 4;//YANG MAU DICARI
+    int ketemu =0;
+    int i;
+    //ALGORITMA SEQUENTIAL SEARCH
+    for (i = 0; i < n; i++){
+        if(data[i] == cari){
+            ketemu++;
+
+        }
+    }
+
+    cout << "SEQUENTIAL SEARCH\n";
+    cout << "DATA : {9, 4, 1, 4, 7, 10, 5, 4, 12, 4}\n";
+
+    if (ketemu){
+        cout << "ANGKA " << cari << " ADA SEBANYAK " << ketemu << endl;
+    }else{
+        cout << "data tidak ditemukan\n" ;
+    }
+
+return 0;
+}
+```
+#### Output:
+![pertemuan8/OUTPUT/3.png](https://github.com/Law650/2311102153_Yoga-Hogantara/blob/main/pertemuan8/OUTPUT/3.png)
+
+Kode di atas menggunakan sequential search unutk mencari jumlah angka dalam data array yang sudah ada. Program diatas mencari berapa banyaknya angka 4 yang ada pada data array (9, 4, 1, 4, 7, 10, 5, 4, 12, 4) dengan 10 elemen, dengan menggunakan algoritma Sequential Search untuk mencari nilai dan jumlah angka yang ketemu sehingga menghasilkan angka dan jumlah angka yang dicari.
 
 
 ## Kesimpulan
-Linked list merupakan struktur data yang terdiri dari node-node yang saling tehubung melalui alamat pointer.
-pada linked list non-circular setiap node terhubung kenode berikutnya namun tail tidak terhubung ke node head dan penanda untuk menandakan akhir dari linked list menggunakan NULL. Linked list circular node terakhir kembali terhubung ke node pertama sehingga membentuk lingkaran dengan menggunakan node tambahan yang digunakan dalam linked list circular. pada linked list circular tidak ada nilai NULL untuk menandakan akhir, dan penggunaan node saat ini yang digunakan untuk menghentikan perulangan.
+Searching digunakan untuk menemukan data dalam kumpulan data yang memiliki tipe data sama, yang mempunyai 2 metode pencarian yang umum yaitu:
+
+1. sequential search
+    Metode ini mencari data dengan membandingkan setiap komponen struktur data dengan nilai yang dicari, dimulai dari awal hingga akhir. Jika tidak ada data yang ditemukan, proses pencarian berakhir
+
+2. Binary Search
+     Metode ini mengumpulkan data dengan membagi struktur data menjadi dua bagian dan membandingkan nilai yang dicari dengan nilai tengah. Jika nilai yang dicari lebih kecil dari nilai tengah, proses pencarian dilakukan di bagian kiri, dan jika nilainya lebih besar, maka proses pencarian dilakukan di bagian kanan. Sampai data ditemukan atau tidak ditemukan, proses ini berulang.
 
 ## Referensi
-[1] Mutaz Rasmi Abu sara, Mohammad F.J.Klaib, dan Masud Hasan, Hybrid Array List: An Efficient Dynamic Array with Linked List Structure. telkomuniversity; 2020.
+[1] Asisten Praktikum, “Modul 8 SORTING", Learning Management System, 2023.
 
-[2] Abu Sara, M. R., Klaib, M. F. J., & Hasan, M. (2021). Hybrid Array List: An Efficient Dynamic Array with Linked List Structure. Indonesia Journal on Computing (Indo-JC), 5(3), 47-62.
+[2] Meidyan Permata Putri, Guntoro Barovih, Rezania Agramanisti Azdy, Yuniansyah, Andri Saputra, Yesi Sriyeni, Arsia Rini, Fadhila Tangguh Admojo (2022). ALGORITMA DAN STRUKTUR DATA.  Widina Bhakti Persada Bandung.
